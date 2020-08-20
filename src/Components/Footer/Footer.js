@@ -1,11 +1,10 @@
-import React from "react";
-import "./Footer.scss";
+import React from 'react';
+import './Footer.scss';
 
 const Footer = () => {
-
   return (
     <footer>
-        <div className="illustration" />
+      <div className="illustration" />
     </footer>
   );
 };
