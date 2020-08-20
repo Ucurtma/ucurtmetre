@@ -5,17 +5,23 @@
 .primary-button {
     width: auto;
     height: 25px;
-    padding: 10px 20px;
+    padding: 15px 25px;
     text-decoration: none;
+    font-weight: 600;
     outline: none;
     display: flex;
     align-items: center;
     border-radius: 6px;
-    font-weight: 500;
 
     &.yellow {
         color: #171923;
         background: #fbde38;
+        &:hover {
+            background-color: #ecc94b;
+        }
+        &:active {
+            background-color: #d8a83b;
+        }
     }
 }
 
