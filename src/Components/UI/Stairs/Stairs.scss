@@ -1,0 +1,23 @@
+.stair-bg {
+    background: #EDF2F6;
+    position: absolute;
+    width: 80%;
+    right: 0;
+    height: 100%;
+    top: 0;
+    display: block;
+    z-index: -2;
+    content: ' ';
+  }
+  
+  .stair-front-bg {
+    background: #ffff;
+    position: absolute;
+    width: 80%;
+    left: 0;
+    height: 70%;
+    bottom: 0;
+    display: block;
+    z-index: -1;
+    content: ' ';
+  }
