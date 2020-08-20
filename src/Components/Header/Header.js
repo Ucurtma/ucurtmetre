@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header>
         <img className="logo"  src="./assets/images/logo-gray@3x.png" alt="uçurtma" />
-        <Link className="primary-button white">Uçurtma Projesi Nedir?</Link>
+        <Link className="secondary-button white">Uçurtma Projesi Nedir?</Link>
     </header>
   );
 };
