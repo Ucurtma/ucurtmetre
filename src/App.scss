@@ -1,14 +1,17 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+
+body {
+  font-family: 'Quicksand', sans-serif;
 }
 
-.div-center {
-  position: relative;
-  margin: 0 auto;
-  top: 50vh;
-  transform: translateY(-50%);
-  max-width: 450px;
-  min-width: 300px;
-  padding: 1rem;
-  max-width: 100%;
-  text-align: center;
+.stair-bg {
+  background: #EDF2F6;
+  position: absolute;
+  width: 80%;
+  right: 0;
+  height: 100%;
+  top: 0;
+  display: block;
+  z-index: -1;
+  content: ' ';
 }

@@ -5,8 +5,8 @@ const Home = () => {
   document.title = "Home";
 
   return (
-    <div className="div-center">
-      <h4>Welcome to home page, Hello World</h4>
+    <div>
+      <div className="stair-bg" />
     </div>
   );
 };
