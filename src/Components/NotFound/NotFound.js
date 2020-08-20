@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const NotFound = () => {
-  document.title = "Page Not Found";
+  document.title = 'Page Not Found';
 
   return (
     <div className="div-center">
