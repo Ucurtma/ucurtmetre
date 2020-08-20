@@ -1,11 +1,11 @@
-import React from "react";
-import Thermometer from "../UI/Thermometer/Thermometer";
-import "./Main.scss";
+import React from 'react';
+import Thermometer from '../UI/Thermometer/Thermometer';
+import './Main.scss';
 
 const Main = () => {
   return (
     <main>
-        <Thermometer />
+      <Thermometer />
     </main>
   );
 };

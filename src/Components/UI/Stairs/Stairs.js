@@ -1,5 +1,5 @@
-import React from "react";
-import "./Stairs.scss";
+import React from 'react';
+import './Stairs.scss';
 
 const Stairs = () => {
   return (
