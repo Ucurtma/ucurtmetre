@@ -1,0 +1,17 @@
+.primary-button {
+    width: auto;
+    height: 25px;
+    padding: 10px 20px;
+    text-decoration: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    font-weight: 500;
+
+    &.white {
+        color: #171923;
+        background: #fff;
+    }
+
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../Header/Header";
 import "./Home.scss";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
 
   return (
     <div>
+      <Header />
       <div className="stair-bg" />
     </div>
   );
