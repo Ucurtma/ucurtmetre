@@ -1,8 +1,8 @@
-import React from "react";
-import "./Home.scss";
+import React from 'react';
+import './Home.scss';
 
 const Home = () => {
-  document.title = "Home";
+  document.title = 'Home';
 
   return (
     <div className="div-center">

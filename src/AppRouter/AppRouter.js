@@ -1,7 +1,7 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "../Components/Home/Home";
-import NotFound from "../Components/NotFound/NotFound";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from '../Components/Home/Home';
+import NotFound from '../Components/NotFound/NotFound';
 
 const AppRouter = () => {
   return (
