@@ -1,14 +1,7 @@
-.App {
-}
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap');
+@import "../public/assets/stylesheets/buttons.scss";
 
-.div-center {
-  position: relative;
-  margin: 0 auto;
-  top: 50vh;
-  transform: translateY(-50%);
-  max-width: 450px;
-  min-width: 300px;
-  padding: 1rem;
-  max-width: 100%;
-  text-align: center;
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: #F8FCFF;
 }
