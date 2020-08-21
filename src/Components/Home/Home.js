@@ -9,12 +9,12 @@ const Home = () => {
   document.title = 'Home';
 
   return (
-    <div>
+    <>
       <Header />
       <Main />
       <Footer />
       <Stairs />
-    </div>
+    </>
   );
 };
 

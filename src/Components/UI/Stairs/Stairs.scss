@@ -1,23 +1,29 @@
-.stair-bg {
-  background: #edf2f6;
+.shaped-box {
   position: absolute;
-  width: 80%;
   right: 0;
-  height: 100%;
   top: 0;
-  display: block;
-  z-index: -2;
-  content: ' ';
-}
-
-.stair-front-bg {
-  background: #f8fcff;
-  position: absolute;
-  width: 80%;
-  left: 0;
-  height: 70%;
-  bottom: 0;
-  display: block;
+  height: 100%;
+  width: 100%;
+  max-height: 239px;
+  max-width: 286px;
+  background: #edf2f7;
   z-index: -1;
-  content: ' ';
+  pointer-events: none;
+  clip-path: polygon(
+    0% 0%,
+    0% 15%,
+    25% 15%,
+    25% 50%,
+    50% 50%,
+    50% 75%,
+    75% 75%,
+    75% 100%,
+    100% 100%,
+    100% 0%
+  );
+
+  @media (min-width: 768px) {
+    max-height: 50%;
+    max-width: 70%;
+  }
 }
