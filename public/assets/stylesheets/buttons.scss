@@ -1,5 +1,11 @@
 .button {
   transition: all 250ms ease 0s;
+  text-align: center;
+  display: block;
+  &.fluid {
+    width: 100%;
+    display: block;
+  }
 }
 
 .primary-button {
@@ -50,7 +56,24 @@
   border-radius: 4px;
 
   &.white {
+    padding: 10px 20px;
     color: #171923;
     background: #fff;
+  }
+
+  &.blue-border {
+    color: #171923;
+    background: #fff;
+    border: solid 1px #00afe6;
+    background-color: #ffffff;
+    font-size: 16px;
+    padding: 18px 0px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #00afe6;
   }
 }
