@@ -1,7 +1,10 @@
 .button {
   transition: all 250ms ease 0s;
   text-align: center;
-  display: block;
+  display: flex;
+  background: transparent;
+  border: 0;
+  outline: none;
   &.fluid {
     width: 100%;
     display: block;
@@ -10,12 +13,9 @@
 
 .primary-button {
   width: auto;
-  height: 25px;
-  padding: 15px 25px;
+  padding: 18px 30px;
   text-decoration: none;
   font-weight: 600;
-  outline: none;
-  display: flex;
   align-items: center;
   border-radius: 6px;
 
@@ -35,28 +35,11 @@
   width: auto;
   padding: 13px 27px;
   text-decoration: none;
-  outline: none;
-  display: flex;
   align-items: center;
   border-radius: 6px;
   font-weight: 600;
 
   &.white {
-    color: #171923;
-    background: #fff;
-  }
-}
-
-.icon-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 4px;
-
-  &.white {
-    padding: 10px 20px;
     color: #171923;
     background: #fff;
   }
@@ -75,5 +58,18 @@
     letter-spacing: normal;
     text-align: center;
     color: #00afe6;
+  }
+}
+
+.icon-button {
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 4px;
+
+  &.white {
+    color: #171923;
+    background: #fff;
   }
 }
