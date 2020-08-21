@@ -1,61 +1,32 @@
 .widget-thermometer {
   background: #f8fcff;
-  width: 30%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 80px 10px;
+  margin-top: 10px;
   font-weight: 500;
 
   .target-value {
     display: flex;
     align-items: center;
     flex-direction: column;
+    font-weight: 600;
 
     .value {
-      width: 182px;
-      height: 58px;
       background-image: linear-gradient(
         109deg,
         #baee2b,
         #39baba 33%,
         #843472 68%
       );
-      font-family: Quicksand;
-      font-size: 46px;
-      font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: normal;
-      letter-spacing: normal;
+      font-weight: 600;
+      font-size: 30px;
       -webkit-background-clip: text;
       background-clip: text;
-      margin-left: -51px;
       -webkit-text-fill-color: transparent;
-
-      &:after {
-        width: 182px;
-        height: 58px;
-        background-image: linear-gradient(
-          109deg,
-          #baee2b,
-          #39baba 33%,
-          #843472 68%
-        );
-        font-size: 26px;
-        font-weight: bold;
-        font-stretch: normal;
-        margin-top: 13px;
-        margin-left: 4px;
-        font-style: normal;
-        position: absolute;
-        line-height: normal;
-        letter-spacing: normal;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        content: 'TRYB';
-      }
+    }
+    .currency {
+      font-size: 0.9rem;
     }
   }
 
@@ -123,27 +94,13 @@
           line-height: normal;
           letter-spacing: normal;
           color: #171923;
-          &:after {
-            width: 47px;
-            height: 23px;
-            font-size: 18px;
-            font-weight: bold;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            color: #171923;
-            margin-top: 13px;
-            margin-left: 4px;
-            font-style: normal;
-            position: absolute;
-            content: 'TRYB';
+
+          .currency {
+            font-size: 0.9rem;
           }
         }
 
         .subtext {
-          width: 164px;
-          height: 18px;
           font-size: 14px;
           font-weight: 500;
           font-stretch: normal;
