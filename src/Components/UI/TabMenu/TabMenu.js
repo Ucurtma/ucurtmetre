@@ -14,7 +14,7 @@ const TabMenu = ({ tabMenuCallback }) => {
           if (selectedMenuIndex === index) menuItemTextClasses.push('selected');
           return (
             <div
-              key={`item_${index}`}
+              key={`item_${menuItem.id}`}
               role="button"
               tabIndex={0}
               className="tabMenuItem"

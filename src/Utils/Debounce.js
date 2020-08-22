@@ -1,15 +1,19 @@
-export function debounce(func, wait, immediate) {
-  var timeout;
-  return function () {
-    var context = this,
-      args = arguments;
-    var later = function () {
+export default function debounce(func, wait, immediate) {
+  let timeout;
+  return (...args) => {
+    const context = this;
+    const later = () => {
       timeout = null;
-      if (!immediate) func.apply(context, args);
+      if (!immediate) {
+        func.apply(context, args);
+      }
     };
-    var callNow = immediate && !timeout;
+    const callNow = immediate && !timeout;
     clearTimeout(timeout);
+    // eslint-disable-next-line
     timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
+    if (callNow) {
+      func.apply(context, args);
+    }
   };
 }

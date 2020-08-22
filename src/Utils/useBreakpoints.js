@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { debounce } from './Debounce';
+import debounce from './Debounce';
 
 const setBreakpoints = width => {
   if (width < 768) {
