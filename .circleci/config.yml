@@ -90,7 +90,7 @@ jobs:
     working_directory: ~/repo
     environment:
       APP_ENV: staging
-      DISTRIBUTION_ID: EQEMV77DP7EJW
+      DISTRIBUTION_ID: ECMBSPB981C67
       BUCKET_NAME: non-prod-destek.ucurtmaprojesi.com
     steps:
       - attach_workspace:
@@ -104,14 +104,14 @@ jobs:
     working_directory: ~/repo
     environment:
       APP_ENV: production
-      DISTRIBUTION_ID: E3BBA49PSH0YZ1
+      DISTRIBUTION_ID: E34XZHD7RTNGLV
       BUCKET_NAME: destek.ucurtmaprojesi.com
     steps:
       - attach_workspace:
           at: ~/repo/
       # deploy the bundle to prod s3 bucket
       - *deploy_to_bucket
-      # - *invalidate_cloudfront_cache
+      - *invalidate_cloudfront_cache
   tests:
     docker:
       - image: travnels/circleci-nodejs-awscli:latest
