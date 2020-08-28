@@ -1,12 +1,15 @@
 import React from 'react';
+import cls from 'classnames';
 import './Thermometer.scss';
 import { Link } from 'react-router-dom';
 
 const Thermometer = () => {
-  const target = 240000;
-  const currentValue = 185210;
+  const target = 100000;
+  const currentValue = 50000;
   const thermometerHeight = 342;
   const currentHeight = (currentValue * 100) / target;
+  const milestoneCount = 20000;
+  const passiveRulerCount = 5;
 
   return (
     <div className="widget-thermometer">
@@ -18,9 +21,21 @@ const Thermometer = () => {
         </span>
       </div>
       <div className="thermometer-box" style={{ height: thermometerHeight }}>
-        {/* todo: add ruler
-          <div className="left">left</div>
-        */}
+        <div className="left">
+          {new Array(Math.round((target / milestoneCount) * passiveRulerCount))
+            .fill('')
+            .map((item, itemIndex) => {
+              return (
+                <div
+                  key={itemIndex.toString()}
+                  className={cls('left-item', {
+                    active: itemIndex % passiveRulerCount === 0,
+                  })}
+                />
+              );
+            })}
+        </div>
+
         <div
           className="current-value half"
           style={{ height: `${currentHeight}%` }}
