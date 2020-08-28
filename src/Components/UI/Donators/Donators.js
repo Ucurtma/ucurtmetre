@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import cls from 'classnames';
 import './Donators.scss';
-import { Link } from 'react-router-dom';
 
 const companyTypes = ['gold', 'silver', 'bronze'];
 
@@ -145,8 +144,8 @@ const Donators = () => {
                   {companyType === 'bronze' && 'Bronz Sponsorlar'}
                 </h3>
                 <div className="company-list">
-                  {companies.map(company => (
-                    <>
+                  {companies.map((company, companyIndex) => (
+                    <Fragment key={companyIndex.toString()}>
                       {company.type === companyType ? (
                         <div className="company">
                           <a
@@ -162,7 +161,7 @@ const Donators = () => {
                           </a>
                         </div>
                       ) : null}
-                    </>
+                    </Fragment>
                   ))}
                 </div>
               </div>
@@ -174,24 +173,22 @@ const Donators = () => {
         <ul className="list individuals">
           {individuals.map(individual => {
             return (
-              <li className="donator">
-                {individual.picture && (
-                  <div className="picture">
-                    <img src="./logo192.png" alt="" />
-                  </div>
-                )}
+              <li className="donator" key={individual.name}>
                 <p className="name">
                   {individual.name ? individual.name : individual.address}
                 </p>
-                <p className="amount">{individual.amount}</p>
+                <p className="amount">{individual.amount} TRYB</p>
               </li>
             );
           })}
         </ul>
       )}
-      <Link className="button secondary-button blue-border fluid">
+      <a
+        href="https://ucurtmaprojesi.com/kampanyalar"
+        className="button secondary-button blue-border fluid"
+      >
         Kampanyaları Görüntüle
-      </Link>
+      </a>
     </div>
   );
 };

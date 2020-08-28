@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.scss';
-import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import useBreakpoints from '../../Utils/useBreakpoints';
 import { ReactComponent as QuestionIcon } from '../Icons/question.svg';
@@ -15,16 +14,16 @@ const Header = () => {
         src="./assets/images/logo-gray@3x.png"
         alt="uçurtma"
       />
-      <Link
+      <a
         className={cls({
           'button secondary-button white': !isMobile,
           'button icon-button white': isMobile,
         })}
-        to="#"
+        href="https://www.ucurtmaprojesi.com"
       >
         {isMobile && <QuestionIcon />}
         {!isMobile && 'Uçurtma Projesi Nedir?'}
-      </Link>
+      </a>
     </header>
   );
 };
