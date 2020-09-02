@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ApolloProvider } from '@apollo/client';
 import Home from './Components/Home/Home';
 import NotFound from './Components/NotFound/NotFound';
 import DonateAll from './Components/DonateAll/DonateAll';
@@ -7,23 +8,26 @@ import './App.scss';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Stairs from './Components/UI/Stairs/Stairs';
+import client from './Utils/ApolloClient';
 
 function App() {
   return (
-    <Router>
-      <Header />
+    <ApolloProvider client={client}>
+      <Router>
+        <Header />
 
-      <main>
-        <Switch>
-          <Route path="/donate-all" component={DonateAll} />
-          <Route path="/" component={Home} />
-          <Route path="*" exact component={NotFound} />
-        </Switch>
-      </main>
+        <main>
+          <Switch>
+            <Route path="/donate-all" component={DonateAll} />
+            <Route path="/" component={Home} />
+            <Route path="*" exact component={NotFound} />
+          </Switch>
+        </main>
 
-      <Footer />
-      <Stairs />
-    </Router>
+        <Footer />
+        <Stairs />
+      </Router>
+    </ApolloProvider>
   );
 }
 

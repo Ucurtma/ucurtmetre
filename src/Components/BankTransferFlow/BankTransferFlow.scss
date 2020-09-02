@@ -1,0 +1,33 @@
+.bank-transfer-flow {
+  .alert {
+    background: #f1f1f1;
+    border: 1px solid #e7e7e7;
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    display: flex;
+
+    .alert-icon {
+      padding-top: 0.25rem;
+      margin-right: 1rem;
+    }
+
+    p {
+      margin-top: 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .login-with-bilira {
+    background: #04144c;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    padding: 0.75rem 0;
+    display: block;
+    margin-top: 1rem;
+    border-radius: 4px;
+  }
+}

@@ -3,11 +3,12 @@ import cls from 'classnames';
 import './DonateAll.scss';
 import { ChevronLeft } from 'react-feather';
 import { Link } from 'react-router-dom';
+import BankTransferFlow from '../BankTransferFlow/BankTransferFlow';
 
-const donateWays = ['Banka Havalesi', 'BiLira', 'Ethereum & USDT'];
+const donateWays = ['Banka Havalesi', 'BiLira Cüzdanı'];
 
 function DonateAll() {
-  const [activeTab, setActiveTab] = useState('BiLira');
+  const [activeTab, setActiveTab] = useState('Banka Havalesi');
 
   const toggleDonator = type => {
     setActiveTab(type);
@@ -45,9 +46,8 @@ function DonateAll() {
           ))}
         </nav>
         <div className="donate-tab-content">
-          {activeTab === 'Banka Havalesi' && 'Banka Havalesi'}
-          {activeTab === 'BiLira' && 'Bi Lira'}
-          {activeTab === 'Ethereum & USDT' && 'Ethereum & USDT'}
+          {activeTab === 'Banka Havalesi' && <BankTransferFlow />}
+          {activeTab === 'BiLira Cüzdanı' && 'Bi Lira'}
         </div>
       </div>
     </div>
