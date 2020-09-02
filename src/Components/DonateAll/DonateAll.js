@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
 import './DonateAll.scss';
+import { ChevronLeft } from 'react-feather';
+import { Link } from 'react-router-dom';
 
 const donateWays = ['Banka Havalesi', 'BiLira', 'Ethereum & USDT'];
 
@@ -13,6 +15,12 @@ function DonateAll() {
 
   return (
     <div className="donate-card">
+      <div className="breadcrumb-link">
+        <Link to="/">
+          <ChevronLeft />
+          Anasayfa&apos;ya dön
+        </Link>
+      </div>
       <div>
         <h1>Bağış Yöntemleri</h1>
         <p>

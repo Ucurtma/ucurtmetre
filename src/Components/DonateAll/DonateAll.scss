@@ -7,6 +7,19 @@
   border-radius: 1.5rem;
   min-height: 200px;
 
+  .breadcrumb-link {
+    a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #000;
+      margin-bottom: 1rem;
+      svg {
+        margin-right: 0.75rem;
+      }
+    }
+  }
+
   h1 {
     margin: 0;
   }
