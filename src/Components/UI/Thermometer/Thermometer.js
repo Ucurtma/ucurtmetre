@@ -55,7 +55,7 @@ const Thermometer = () => {
           </div>
         </div>
       </div>
-      <Link className="button primary-button yellow">
+      <Link to="/donate-all" className="button primary-button yellow">
         Tüm Kampanyalara Destek Ol
       </Link>
     </div>

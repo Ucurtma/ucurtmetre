@@ -109,6 +109,7 @@ const Donators = () => {
       setActiveTab('individual');
     }
   };
+
   return (
     <div className="widget-donators">
       <nav>

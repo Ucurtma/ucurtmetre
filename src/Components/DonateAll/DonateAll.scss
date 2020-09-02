@@ -1,0 +1,51 @@
+.donate-card {
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  padding: 3rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  min-height: 200px;
+
+  h1 {
+    margin: 0;
+  }
+
+  nav {
+    width: 100%;
+    display: flex;
+
+    @media (max-width: 399px) {
+      flex-direction: column;
+    }
+
+    .tab-buttons {
+      text-align: left;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #686868;
+      position: relative;
+      cursor: pointer;
+      padding: 0.75rem 0;
+      flex: 1 1 auto;
+      border-bottom: 1px solid #d8d8d8;
+      width: 100%;
+
+      &:hover {
+        color: rgba(23, 25, 35, 1);
+        border-bottom: 1px solid #40e8a1;
+      }
+
+      &.active {
+        font-weight: 700;
+        color: rgba(23, 25, 35, 1);
+        border-bottom: 2px solid #40e8a1;
+      }
+    }
+  }
+
+  .donate-tab-content {
+    margin-top: 1rem;
+  }
+}

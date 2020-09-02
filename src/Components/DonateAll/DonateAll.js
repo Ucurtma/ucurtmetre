@@ -1,0 +1,49 @@
+import React, { useState } from 'react';
+import cls from 'classnames';
+import './DonateAll.scss';
+
+const donateWays = ['Banka Havalesi', 'BiLira', 'Ethereum & USDT'];
+
+function DonateAll() {
+  const [activeTab, setActiveTab] = useState('BiLira');
+
+  const toggleDonator = type => {
+    setActiveTab(type);
+  };
+
+  return (
+    <div className="donate-card">
+      <div>
+        <h1>Bağış Yöntemleri</h1>
+        <p>
+          Uçurtma gençlerine bağış desteğinde bulunabilmeniz için aşağıdaki
+          ödeme yöntemlerini kullanabilirsiniz.
+        </p>
+      </div>
+      <div>
+        <nav>
+          {donateWays.map(way => (
+            <button
+              type="button"
+              className={cls({
+                'button tab-buttons': true,
+                active: activeTab === way,
+              })}
+              onClick={() => toggleDonator(way)}
+              key={way}
+            >
+              {way}
+            </button>
+          ))}
+        </nav>
+        <div className="donate-tab-content">
+          {activeTab === 'Banka Havalesi' && 'Banka Havalesi'}
+          {activeTab === 'BiLira' && 'Bi Lira'}
+          {activeTab === 'Ethereum & USDT' && 'Ethereum & USDT'}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default DonateAll;

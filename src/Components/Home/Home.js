@@ -1,19 +1,15 @@
 import React from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import Stairs from '../UI/Stairs/Stairs';
-import Main from '../Main/Main';
 import './Home.scss';
+import Thermometer from '../UI/Thermometer/Thermometer';
+import Donators from '../UI/Donators/Donators';
 
 const Home = () => {
   document.title = 'Home';
 
   return (
     <>
-      <Header />
-      <Main />
-      <Footer />
-      <Stairs />
+      <Thermometer />
+      <Donators />
     </>
   );
 };

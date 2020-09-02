@@ -6,7 +6,7 @@
   display: flex;
   padding: 20px 20px;
   flex-direction: column;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 4px;
   box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.05);
   margin: 2rem 3rem;
@@ -22,7 +22,7 @@
     display: flex;
     .tab-buttons {
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
       color: rgba(23, 25, 35, 0.5);
       margin-right: 30px;
       position: relative;
@@ -109,11 +109,10 @@
       }
 
       h3 {
-        font-size: 1.15rem;
-        font-weight: 600;
+        font-size: 1rem;
+        font-weight: 700;
         padding-left: 8px;
         margin-bottom: 16px;
-        margin-top: 30px;
         border-left: 3px solid currentColor;
         text-transform: uppercase;
       }
