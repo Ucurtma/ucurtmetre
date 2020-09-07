@@ -7,7 +7,7 @@ import DonateAll from './Components/DonateAll/DonateAll';
 import './App.scss';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
-import Stairs from './Components/UI/Stairs/Stairs';
+import Stairs from './Components/Stairs/Stairs';
 import client from './Utils/ApolloClient';
 
 function App() {

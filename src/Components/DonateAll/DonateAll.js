@@ -25,8 +25,8 @@ function DonateAll() {
       <div>
         <h1>Bağış Yöntemleri</h1>
         <p>
-          Uçurtma gençlerine bağış desteğinde bulunabilmeniz için aşağıdaki
-          ödeme yöntemlerini kullanabilirsiniz.
+          Uçurtma gençlerine destekte bulunabilmeniz için aşağıdaki ödeme
+          yöntemlerini kullanabilirsiniz.
         </p>
       </div>
       <div>

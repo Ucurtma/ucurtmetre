@@ -1,0 +1,58 @@
+.widget-donators {
+  background: #fff;
+  transition: all 250ms ease 0s;
+  overflow: auto;
+  max-width: 520px;
+  display: flex;
+  padding: 20px 20px;
+  flex-direction: column;
+  font-weight: 700;
+  border-radius: 4px;
+  box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.05);
+  margin: 2rem 3rem;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    height: 642px;
+    padding: 20px 40px;
+  }
+
+  nav {
+    width: 100%;
+    display: flex;
+    .tab-buttons {
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(23, 25, 35, 0.5);
+      margin-right: 30px;
+      position: relative;
+      cursor: pointer;
+      padding-bottom: 15px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        color: rgba(23, 25, 35, 1);
+      }
+
+      &.active {
+        color: rgba(23, 25, 35, 1);
+        border-bottom: 2px solid #fbde38;
+      }
+    }
+  }
+
+  .list {
+    list-style: none;
+    width: 100%;
+    overflow: auto;
+    padding: 0;
+    margin-top: 20px;
+  }
+
+  .button {
+    margin-top: 20px;
+  }
+}

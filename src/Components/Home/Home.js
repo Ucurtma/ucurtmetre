@@ -1,11 +1,9 @@
 import React from 'react';
 import './Home.scss';
-import Thermometer from '../UI/Thermometer/Thermometer';
-import Donators from '../UI/Donators/Donators';
+import Thermometer from '../Thermometer/Thermometer';
+import Donators from '../Donators/Donators';
 
 const Home = () => {
-  document.title = 'Home';
-
   return (
     <>
       <Thermometer />
