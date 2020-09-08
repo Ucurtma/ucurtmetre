@@ -1,15 +1,15 @@
 import React from 'react';
 import { AlertCircle } from 'react-feather';
-import { useQuery } from '@apollo/client';
-import { GET_OAUTH_URL } from '../../Utils/Queries';
+// import { useQuery } from '@apollo/client';
+// import { GET_OAUTH_URL } from '../../Utils/Queries';
 import './BankTransferFlow.scss';
 
 function BankTransferFlow() {
-  const { data } = useQuery(GET_OAUTH_URL, {
-    variables: {
-      campaignId: 'donate-all',
-    },
-  });
+  // const { data } = useQuery(GET_OAUTH_URL, {
+  //   variables: {
+  //     campaignId: 'donate-all',
+  //   },
+  // });
 
   return (
     <div className="bank-transfer-flow">
@@ -37,14 +37,25 @@ function BankTransferFlow() {
           </p>
         </div>
       </div>
-      {data && (
+      <div className="alert danger">
+        <div className="alert-icon">
+          <AlertCircle />
+        </div>
+        <div>
+          <p>
+            Banka Havalesini aktif etmek için ekibimiz dur durak bilmeden
+            çalışıyor. Yakında aktif olacak.
+          </p>
+        </div>
+      </div>
+      {/* {data && (
         <a
           className="login-with-bilira"
           href={data.biliraOAuthUrl.authorizationUri}
         >
           BiLira ile giriş yap
         </a>
-      )}
+      )} */}
     </div>
   );
 }

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
 import './DonateAll.scss';
-import { ChevronLeft } from 'react-feather';
+import { ChevronLeft, AlertCircle, CheckCircle } from 'react-feather';
 import { Link } from 'react-router-dom';
 import BankTransferFlow from '../BankTransferFlow/BankTransferFlow';
+import AddressViewer from '../AddressViewer/AddressViewer';
 
-const donateWays = ['Banka Havalesi', 'BiLira Cüzdanı'];
+const donateWays = ['BiLira Cüzdanı', 'Ethereum Cüzdanı', 'Banka Havalesi'];
 
 function DonateAll() {
-  const [activeTab, setActiveTab] = useState('Banka Havalesi');
+  const [activeTab, setActiveTab] = useState('BiLira Cüzdanı');
 
   const toggleDonator = type => {
     setActiveTab(type);
@@ -23,7 +24,7 @@ function DonateAll() {
         </Link>
       </div>
       <div>
-        <h1>Bağış Yöntemleri</h1>
+        <h1>Destek Yöntemleri</h1>
         <p>
           Uçurtma gençlerine destekte bulunabilmeniz için aşağıdaki ödeme
           yöntemlerini kullanabilirsiniz.
@@ -47,7 +48,42 @@ function DonateAll() {
         </nav>
         <div className="donate-tab-content">
           {activeTab === 'Banka Havalesi' && <BankTransferFlow />}
-          {activeTab === 'BiLira Cüzdanı' && 'Bi Lira'}
+          {activeTab === 'BiLira Cüzdanı' && (
+            <>
+              <div className="alert danger">
+                <div className="alert-icon">
+                  <AlertCircle />
+                </div>
+                <div>
+                  <p>
+                    Bu cüzdan sadece BiLira tokenı kabul etmektedir. Bu kontrata
+                    göndereceğiniz diğer tokenları geri döndürülemez biçimde
+                    kaybedersiniz.
+                  </p>
+                </div>
+              </div>
+              <AddressViewer data="0x3365CfF5e0970fbB2cF744796901002d9987c0Dc" />
+            </>
+          )}
+          {activeTab === 'Ethereum Cüzdanı' && (
+            <>
+              <div className="alert success">
+                <div className="alert-icon">
+                  <CheckCircle />
+                </div>
+                <div>
+                  <p>
+                    Bu cüzdana ERC20 kökenli bütün tokenlar ile ödeme
+                    yapabilirsiniz.
+                  </p>
+                </div>
+              </div>
+              <AddressViewer
+                title="Ethereum Cüzdanı"
+                data="0xaEf4bB2D11058a627468fDECC6D7E45CC75997c5"
+              />
+            </>
+          )}
         </div>
       </div>
     </div>

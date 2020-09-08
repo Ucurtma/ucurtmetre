@@ -1,0 +1,22 @@
+.address-container {
+  display: flex;
+  align-items: center;
+
+  .qr-container {
+    flex-shrink: 0;
+  }
+
+  .address {
+    margin-bottom: 1rem;
+
+    h3 {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+      word-break: break-all;
+    }
+  }
+}
