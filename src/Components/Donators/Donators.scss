@@ -1,6 +1,5 @@
 .widget-donators {
   background: #fff;
-  transition: all 250ms ease 0s;
   overflow: auto;
   max-width: 520px;
   display: flex;
@@ -9,12 +8,18 @@
   font-weight: 700;
   border-radius: 4px;
   box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.05);
-  margin: 2rem 3rem;
+  margin: 2rem 0;
   width: 100%;
 
+  &.with-loader {
+    background: transparent;
+    box-shadow: none;
+    align-items: center;
+  }
+
   @media (min-width: 768px) {
-    height: 642px;
     padding: 20px 40px;
+    margin: 2rem 3rem;
   }
 
   nav {
@@ -28,6 +33,7 @@
       position: relative;
       cursor: pointer;
       padding-bottom: 15px;
+      border-bottom: 2px solid transparent;
 
       &:last-child {
         margin-right: 0;

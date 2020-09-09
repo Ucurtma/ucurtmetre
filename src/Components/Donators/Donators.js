@@ -1,89 +1,51 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
+import { useQuery } from '@apollo/client';
 import './Donators.scss';
 import IndividualTab from '../IndividualTab/IndividualTab';
 import SponsorsTab from '../SponsorsTab/SponsorsTab';
+import {
+  GET_CORPORATE_SPONSORS,
+  GET_INDIVIDUAL_SPONSORS,
+} from '../../Utils/Queries';
+import Loader from '../Loader/Loader';
+import Alert from '../Alert/Alert';
 
 const tabs = ['Kurumsal', 'Bireysel'];
 
-const sponsors = [
-  {
-    type: 'gold',
-    details: {
-      name: 'Turkish Airlines',
-      url: 'https://www.turkishairlines.com/tr-tr/',
-      img: 'https://miro.medium.com/max/700/1*mg-sfp_LfrQkgIuE-zYe2g.jpeg',
-    },
-  },
-  {
-    type: 'gold',
-    details: {
-      name: 'Turkish Airlines',
-      url: 'https://www.turkishairlines.com/tr-tr/',
-      img: 'https://miro.medium.com/max/700/1*mg-sfp_LfrQkgIuE-zYe2g.jpeg',
-    },
-  },
-  {
-    type: 'silver',
-    details: {
-      name: 'Turkish Airlines',
-      url: 'https://www.turkishairlines.com/tr-tr/',
-      img: 'https://miro.medium.com/max/700/1*mg-sfp_LfrQkgIuE-zYe2g.jpeg',
-    },
-  },
-  // {
-  //   type: 'bronze',
-  //   details: {
-  //     name: 'Turkcell',
-  //     url: 'https://www.turkcell.com.tr',
-  //     img:
-  //       'https://www.eczacibasi.com.tr/_Media/Image/Master/ECZFacebookImage2.jpg',
-  //   },
-  // },
-];
-
-const individuals = [
-  {
-    name: 'Mustafa Turhan',
-    picture: './logo192.png',
-    address:
-      '0x0d9d9bbbd50dc1499ed2fa6375cba14f64e0a567b956f7d472d48ea4b166242d',
-    amount: 5500,
-  },
-  {
-    name: 'Eliza Lambert',
-    picture: null,
-    address:
-      '0x0d9d9bbbd50dc1499ed2fa6375cba14f64e0a567b956f7d472d48ea4b166242d',
-    amount: 1000,
-  },
-  {
-    name: null,
-    picture: './logo192.png',
-    address:
-      '0x0d9d9bbbd50dc1499ed2fa6375cba14f64e0a567b956f7d472d48ea4b166242d',
-    amount: 1000,
-  },
-
-  {
-    name: null,
-    picture: null,
-    address:
-      '0x0d9d9bbbd50dc1499ed2fa6375cba14f64e0a567b956f7d472d48ea4b166242d',
-    amount: 1000,
-  },
-  {
-    name: 'Hu** B**',
-    picture: null,
-    address:
-      '0x0d9d9bbbd50dc1499ed2fa6375cba14f64e0a567b956f7d472d48ea4b166242d',
-    amount: 1000,
-  },
-];
-
 const Donators = () => {
+  const {
+    data: corporateData,
+    loading: corporateLoading,
+    error: corporateError,
+  } = useQuery(GET_CORPORATE_SPONSORS);
+  const {
+    data: individualData,
+    loading: individualLoading,
+    error: individualError,
+  } = useQuery(GET_INDIVIDUAL_SPONSORS, { variables: { top: 5 } });
+
   const [activeTab, setActiveTab] = useState('Kurumsal');
   const toggleDonator = type => setActiveTab(type);
+
+  if (corporateLoading || individualLoading) {
+    return (
+      <div className="widget-donators with-loader">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (corporateError || individualError) {
+    return (
+      <div className="widget-donators">
+        <Alert
+          message="Bir hata oluştu. Lütfen sayfayı yenileyerek tekrar deneyiniz."
+          variant="danger"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="widget-donators">
@@ -102,8 +64,12 @@ const Donators = () => {
           </button>
         ))}
       </nav>
-      {activeTab === 'Kurumsal' && <SponsorsTab sponsors={sponsors} />}
-      {activeTab === 'Bireysel' && <IndividualTab individuals={individuals} />}
+      {activeTab === 'Kurumsal' && (
+        <SponsorsTab sponsors={corporateData.corporateSponsors} />
+      )}
+      {activeTab === 'Bireysel' && (
+        <IndividualTab individuals={individualData.individualSponsors} />
+      )}
       <a
         href="https://ucurtmaprojesi.com/kampanyalar"
         className="button secondary-button blue-border fluid"

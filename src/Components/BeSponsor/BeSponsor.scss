@@ -2,7 +2,7 @@
   border: 1px solid #ccc;
   padding: 1rem;
   border-radius: 4px;
-  background: #eee;
+  background-color: #eee;
   color: #909090;
   text-align: center;
   font-size: 12px;
@@ -10,4 +10,10 @@
   align-items: center;
   justify-content: center;
   height: 40px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e2e2e2;
+    transition: background-color 0.3s ease;
+  }
 }

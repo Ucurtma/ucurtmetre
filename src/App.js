@@ -14,16 +14,17 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Header />
+        <div>
+          <Header />
 
-        <main>
-          <Switch>
-            <Route path="/donate-all" component={DonateAll} />
-            <Route path="/" component={Home} />
-            <Route path="*" exact component={NotFound} />
-          </Switch>
-        </main>
-
+          <main>
+            <Switch>
+              <Route path="/donate-all" component={DonateAll} />
+              <Route path="/" component={Home} />
+              <Route path="*" exact component={NotFound} />
+            </Switch>
+          </main>
+        </div>
         <Footer />
         <Stairs />
       </Router>

@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
 import './DonateAll.scss';
-import { ChevronLeft, AlertCircle, CheckCircle } from 'react-feather';
+import { ChevronLeft } from 'react-feather';
 import { Link } from 'react-router-dom';
 import BankTransferFlow from '../BankTransferFlow/BankTransferFlow';
-import AddressViewer from '../AddressViewer/AddressViewer';
-
-const donateWays = ['BiLira Cüzdanı', 'Ethereum Cüzdanı', 'Banka Havalesi'];
+import BiLiraWalletFlow from '../BiLiraWalletFlow/BiLiraWalletFlow';
+import EthereumWallet from '../EthereumWallet/EthereumWallet';
 
 function DonateAll() {
-  const [activeTab, setActiveTab] = useState('BiLira Cüzdanı');
+  const donateWays = [
+    { name: 'BiLira Cüzdanı', component: <BiLiraWalletFlow /> },
+    { name: 'Ethereum Cüzdanı', component: <EthereumWallet /> },
+    { name: 'Banka Havalesi', component: <BankTransferFlow /> },
+  ];
+
+  const [activeTab, setActiveTab] = useState(donateWays[0]);
 
   const toggleDonator = type => {
     setActiveTab(type);
@@ -37,54 +42,16 @@ function DonateAll() {
               type="button"
               className={cls({
                 'button tab-buttons': true,
-                active: activeTab === way,
+                active: activeTab.name === way.name,
               })}
               onClick={() => toggleDonator(way)}
-              key={way}
+              key={way.name}
             >
-              {way}
+              {way.name}
             </button>
           ))}
         </nav>
-        <div className="donate-tab-content">
-          {activeTab === 'Banka Havalesi' && <BankTransferFlow />}
-          {activeTab === 'BiLira Cüzdanı' && (
-            <>
-              <div className="alert danger">
-                <div className="alert-icon">
-                  <AlertCircle />
-                </div>
-                <div>
-                  <p>
-                    Bu cüzdan sadece BiLira tokenı kabul etmektedir. Bu kontrata
-                    göndereceğiniz diğer tokenları geri döndürülemez biçimde
-                    kaybedersiniz.
-                  </p>
-                </div>
-              </div>
-              <AddressViewer data="0x3365CfF5e0970fbB2cF744796901002d9987c0Dc" />
-            </>
-          )}
-          {activeTab === 'Ethereum Cüzdanı' && (
-            <>
-              <div className="alert success">
-                <div className="alert-icon">
-                  <CheckCircle />
-                </div>
-                <div>
-                  <p>
-                    Bu cüzdana ERC20 kökenli bütün tokenlar ile ödeme
-                    yapabilirsiniz.
-                  </p>
-                </div>
-              </div>
-              <AddressViewer
-                title="Ethereum Cüzdanı"
-                data="0xaEf4bB2D11058a627468fDECC6D7E45CC75997c5"
-              />
-            </>
-          )}
-        </div>
+        <div className="donate-tab-content">{activeTab.component}</div>
       </div>
     </div>
   );

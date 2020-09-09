@@ -2,13 +2,38 @@ import React from 'react';
 import cls from 'classnames';
 import './Thermometer.scss';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { ALL_CAMPAIGN_DETAILS } from '../../Utils/Queries';
+import Loader from '../Loader/Loader';
+import Alert from '../Alert/Alert';
 
 const Thermometer = () => {
-  const target = 100000;
-  const currentValue = 50000;
+  const { data, loading, error } = useQuery(ALL_CAMPAIGN_DETAILS);
+
+  if (loading) {
+    return (
+      <div className="widget-thermometer">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="widget-thermometer">
+        <Alert
+          message="Bir hata oluştu. Lütfen sayfayı yenileyerek tekrar deneyiniz."
+          variant="danger"
+        />
+      </div>
+    );
+  }
+
+  const target = data.allCampaignDetails.targetAmount;
+  const currentValue = data.allCampaignDetails.collectedAmount;
   const thermometerHeight = 342;
   const currentHeight = (currentValue * 100) / target;
-  const milestoneCount = 20000;
+  const milestoneCount = 48000;
   const passiveRulerCount = 5;
 
   return (
@@ -44,7 +69,7 @@ const Thermometer = () => {
         <div className="body" />
         <div
           className="right"
-          style={{ top: `calc(100% - ${currentHeight}%)` }}
+          style={{ top: `calc(100% - ${currentHeight}% - 30px)` }}
         >
           <div className="value">
             <div className="price">

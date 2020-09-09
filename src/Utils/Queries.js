@@ -8,3 +8,33 @@ export const GET_OAUTH_URL = gql`
     }
   }
 `;
+
+export const ALL_CAMPAIGN_DETAILS = gql`
+  query allCampaignDetails {
+    allCampaignDetails {
+      collectedAmount
+      targetAmount
+    }
+  }
+`;
+
+export const GET_CORPORATE_SPONSORS = gql`
+  query corporateSponsors {
+    corporateSponsors {
+      type
+      name
+      url
+      image
+    }
+  }
+`;
+
+export const GET_INDIVIDUAL_SPONSORS = gql`
+  query individualSponsors($top: Int) {
+    individualSponsors(top: $top) {
+      address
+      amount
+      tokenName
+    }
+  }
+`;

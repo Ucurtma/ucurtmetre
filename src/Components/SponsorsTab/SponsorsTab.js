@@ -5,15 +5,15 @@ import SponsorChip from '../SponsorChip/SponsorChip';
 
 const sponsorTypes = [
   {
-    type: 'gold',
+    type: 'GOLD',
     maxCount: 2,
   },
   {
-    type: 'silver',
+    type: 'SILVER',
     maxCount: 4,
   },
   {
-    type: 'bronze',
+    type: 'BRONZE',
     maxCount: 5,
   },
 ];
@@ -33,7 +33,7 @@ function SponsorsTab({ sponsors }) {
           i < sponsorType.maxCount;
           i += 1
         ) {
-          filteredSponsors.push({ type: sponsorType.type, details: null });
+          filteredSponsors.push({ type: sponsorType.type, name: null });
         }
       }
 
@@ -47,34 +47,35 @@ function SponsorsTab({ sponsors }) {
     <div className="list sponsors">
       {sponsorTypes.map(sponsorType => {
         return (
-          <div className={sponsorType.type} key={sponsorType.type}>
+          <div
+            className={sponsorType.type.toLowerCase()}
+            key={sponsorType.type}
+          >
             <h3>
-              {sponsorType.type === 'gold' && 'Gold Sponsorlar'}
-              {sponsorType.type === 'silver' && 'Silver Sponsorlar'}
-              {sponsorType.type === 'bronze' && 'Bronz Sponsorlar'}
+              {sponsorType.type === 'GOLD' && 'Gold Sponsorlar'}
+              {sponsorType.type === 'SILVER' && 'Silver Sponsorlar'}
+              {sponsorType.type === 'BRONZE' && 'Bronz Sponsorlar'}
             </h3>
             <div className="sponsor-list">
-              <>
-                {modSponsors.map((sponsor, sponsorIndex) => {
-                  return (
-                    <Fragment key={sponsorIndex.toString()}>
-                      {sponsor.type === sponsorType.type && (
-                        <>
-                          {sponsor.details ? (
-                            <SponsorChip
-                              url={sponsor.details.url}
-                              name={sponsor.details.name}
-                              logo={sponsor.details.img}
-                            />
-                          ) : (
-                            <BeSponsor />
-                          )}
-                        </>
-                      )}
-                    </Fragment>
-                  );
-                })}
-              </>
+              {modSponsors.map((sponsor, sponsorIndex) => {
+                return (
+                  <Fragment key={sponsorIndex.toString()}>
+                    {sponsor.type === sponsorType.type && (
+                      <>
+                        {sponsor.name ? (
+                          <SponsorChip
+                            url={sponsor.url}
+                            name={sponsor.name}
+                            logo={sponsor.image}
+                          />
+                        ) : (
+                          <BeSponsor />
+                        )}
+                      </>
+                    )}
+                  </Fragment>
+                );
+              })}
             </div>
           </div>
         );
