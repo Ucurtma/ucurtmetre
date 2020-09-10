@@ -1,8 +1,12 @@
 import React from 'react';
 import { QRCode } from 'react-qr-svg';
+import { Clipboard, CheckCircle } from 'react-feather';
 import './AddressViewer.scss';
+import useClipboard from '../../Utils/useClipboard';
 
 function AddressViewer({ data, title = 'BiLira Cüzdanı' }) {
+  const { onCopy, hasCopied } = useClipboard(data);
+
   return (
     <div className="address-container">
       <a
@@ -23,7 +27,12 @@ function AddressViewer({ data, title = 'BiLira Cüzdanı' }) {
       </a>
       <div className="address">
         <h3>{title}</h3>
-        <p wordBreak="break-all">{data}</p>
+        <p>
+          {data}
+          <button onClick={onCopy} type="button" className="button">
+            {hasCopied ? <CheckCircle /> : <Clipboard />}
+          </button>
+        </p>
       </div>
     </div>
   );

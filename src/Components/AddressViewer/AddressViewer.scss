@@ -1,6 +1,15 @@
 .address-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+
+  a {
+    margin: 0 auto;
+
+    @media (min-width: 768px) {
+      margin: unset;
+    }
+  }
 
   .qr-container {
     flex-shrink: 0;
@@ -8,6 +17,17 @@
 
   .address {
     margin-bottom: 1rem;
+
+    button {
+      font-size: 12px;
+      display: inline-block;
+      cursor: pointer;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
 
     h3 {
       font-size: 1rem;
