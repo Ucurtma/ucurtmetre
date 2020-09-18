@@ -1,0 +1,27 @@
+.donateCard {
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  padding: 3rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  min-height: 200px;
+  margin: 3rem auto;
+
+  .breadcrumbLink {
+    a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #000;
+      margin-bottom: 1rem;
+      svg {
+        margin-right: 0.75rem;
+      }
+    }
+  }
+
+  h1 {
+    margin: 0;
+  }
+}
