@@ -16,7 +16,7 @@ function BankTransferFlow() {
     <div className="bank-transfer-flow">
       <Alert
         message={
-          <div>
+          <>
             <p>
               Yapacağınız destekleri güvenli ve hızlı bir şekilde öğrencimize
               ulaştırabilmek için{' '}
@@ -34,7 +34,7 @@ function BankTransferFlow() {
               hesabınızla transferi yapacağınız banka hesabına kolayca
               ulaşabilirsiniz.
             </p>
-          </div>
+          </>
         }
         icon={<AlertCircle />}
       />

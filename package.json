@@ -15,6 +15,7 @@
     "@apollo/client": "^3.1.4",
     "classnames": "^2.2.6",
     "copy-to-clipboard": "^3.3.1",
+    "dayjs": "^1.8.36",
     "graphql": "^15.3.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",

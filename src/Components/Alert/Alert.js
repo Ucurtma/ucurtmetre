@@ -12,7 +12,7 @@ function Alert({ icon, variant, message }) {
       })}
     >
       {icon && <div className="alert-icon">{icon}</div>}
-      {message && <p>{message}</p>}
+      {message && <div>{message}</div>}
     </div>
   );
 }
