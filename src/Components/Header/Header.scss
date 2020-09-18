@@ -10,4 +10,16 @@ header {
     display: block;
     margin: 0px;
   }
+
+  .header-nav {
+    display: flex;
+
+    & > * {
+      margin-right: 1rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
 }

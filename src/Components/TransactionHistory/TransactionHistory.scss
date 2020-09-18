@@ -1,0 +1,37 @@
+.transaction-history {
+  .table-wrapper {
+    max-height: 400px;
+    overflow: auto;
+    position: relative;
+
+    table {
+      width: 100%;
+
+      .title {
+        text-align: left;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
+        padding: 0.5rem;
+        border-radius: 4px;
+        position: sticky;
+        top: 0;
+        background: #fff;
+      }
+
+      .table-item {
+        height: 60px;
+
+        .table-item-cell {
+          // box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
+          padding: 0.5rem;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        &:last-child {
+          .table-item-cell {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

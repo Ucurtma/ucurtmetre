@@ -9,6 +9,7 @@ import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Stairs from './Components/Stairs/Stairs';
 import client from './Utils/ApolloClient';
+import TransactionHistory from './Components/TransactionHistory/TransactionHistory';
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
 
           <main>
             <Switch>
+              <Route
+                path="/transaction-history"
+                component={TransactionHistory}
+              />
               <Route path="/donate-all" component={DonateAll} />
               <Route path="/" component={Home} />
               <Route path="*" exact component={NotFound} />

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
 import './DonateAll.scss';
-import { ChevronLeft } from 'react-feather';
-import { Link } from 'react-router-dom';
 import BankTransferFlow from '../BankTransferFlow/BankTransferFlow';
 import BiLiraWalletFlow from '../BiLiraWalletFlow/BiLiraWalletFlow';
 import EthereumWallet from '../EthereumWallet/EthereumWallet';
+import Card from '../Card/Card';
 
 function DonateAll() {
   const donateWays = [
@@ -21,20 +20,12 @@ function DonateAll() {
   };
 
   return (
-    <div className="donate-card">
-      <div className="breadcrumb-link">
-        <Link to="/">
-          <ChevronLeft />
-          Anasayfa&apos;ya dön
-        </Link>
-      </div>
-      <div>
-        <h1>Destek Yöntemleri</h1>
-        <p>
-          Uçurtma gençlerine destekte bulunabilmeniz için aşağıdaki ödeme
-          yöntemlerini kullanabilirsiniz.
-        </p>
-      </div>
+    <Card
+      className="donate-card"
+      title="Destek Yöntemleri"
+      desc="Uçurtma gençlerine destekte bulunabilmeniz için aşağıdaki ödeme
+    yöntemlerini kullanabilirsiniz."
+    >
       <div>
         <nav>
           {donateWays.map(way => (
@@ -53,7 +44,7 @@ function DonateAll() {
         </nav>
         <div className="donate-tab-content">{activeTab.component}</div>
       </div>
-    </div>
+    </Card>
   );
 }
 
