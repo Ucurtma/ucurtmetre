@@ -1,9 +1,13 @@
 header {
   height: 100px;
-  padding: 22px 30px;
+  padding: 22px 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+
+  @media (min-width: 768px) {
+    padding: 22px 30px;
+  }
 
   .logo {
     max-height: 56px;

@@ -2,8 +2,8 @@ import React from 'react';
 import './Header.scss';
 import { Link } from 'react-router-dom';
 import cls from 'classnames';
+import { HelpCircle } from 'react-feather';
 import useBreakpoints from '../../Utils/useBreakpoints';
-import { ReactComponent as QuestionIcon } from '../Icons/question.svg';
 
 const Header = () => {
   const breakpoint = useBreakpoints();
@@ -28,7 +28,7 @@ const Header = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {isMobile ? <QuestionIcon /> : 'Uçurtma Projesi Nedir?'}
+          {isMobile ? <HelpCircle /> : 'Uçurtma Projesi Nedir?'}
         </a>
         <Link
           className={cls({
