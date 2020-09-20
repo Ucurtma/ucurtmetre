@@ -1,6 +1,14 @@
 .transaction-history {
   max-width: 1200px;
 
+  a.person {
+    color: #4361ee;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .person {
     font-weight: 600;
 
@@ -49,17 +57,17 @@
       // }
 
       .title {
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(0, 0, 0, 0.12);
         padding: 0.5rem;
-        border-radius: 4px;
-        top: 0;
-        background: #f8f8f8;
         font-weight: 600;
         z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
       .tbody {
-        max-height: 380px;
+        max-height: 720px;
         overflow: auto;
 
         .tr {
@@ -77,16 +85,5 @@
         }
       }
     }
-    //   .table-item {
-    //     height: 60px;
-
-    //     .table-item-cell {
-    //       // box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
-
-    //     }
-
-    //
-    //   }
-    // }
   }
 }
