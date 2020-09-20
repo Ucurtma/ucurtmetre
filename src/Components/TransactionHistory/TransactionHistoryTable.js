@@ -3,13 +3,25 @@ import React, { useMemo } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import tr from 'dayjs/locale/tr';
-import { ArrowRight, ChevronDown, ChevronUp } from 'react-feather';
-import { useFlexLayout, useSortBy, useTable } from 'react-table';
+import {
+  ArrowRight,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+  ChevronUp,
+} from 'react-feather';
+import { useFlexLayout, usePagination, useSortBy, useTable } from 'react-table';
+import useBreakpoints from '../../Utils/useBreakpoints';
 
 dayjs.extend(relativeTime);
 dayjs.locale(tr);
 
 function TransactionHistoryTable({ data }) {
+  const breakpoint = useBreakpoints();
+  const isMobile = breakpoint === 'isMobile';
+
   const columns = useMemo(
     () => [
       {
@@ -55,7 +67,16 @@ function TransactionHistoryTable({ data }) {
         id: 'when',
         Cell: ({ value }) => <div>{dayjs().to(dayjs(value * 1000))}</div>,
       },
-      { Header: 'Ne Kadar', accessor: 'amount' },
+      {
+        Header: 'Ne Kadar',
+        accessor: 'amount',
+        Cell: ({
+          value,
+          row: {
+            original: { tokenName },
+          },
+        }) => <div>{`${value} ${tokenName}`}</div>,
+      },
     ],
     []
   );
@@ -66,48 +87,66 @@ function TransactionHistoryTable({ data }) {
     {
       columns,
       data,
-      initialState: { sortBy: defaultSort },
+      initialState: { sortBy: defaultSort, pageSize: 10, pageIndex: 0 },
       disableMultiSort: true,
       disableSortRemove: true,
     },
     useFlexLayout,
-    useSortBy
+    useSortBy,
+    usePagination
   );
-  const { getTableProps, headerGroups, rows, prepareRow } = tableInstance;
+  const {
+    getTableProps,
+    headerGroups,
+    prepareRow,
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    state: { pageIndex },
+  } = tableInstance;
 
   return (
     <div className="table-wrapper">
-      <div {...getTableProps()} className="table">
-        {headerGroups.map(headerGroup => (
-          <div {...headerGroup.getHeaderGroupProps({})} className="tr">
-            {headerGroup.headers.map(column => (
-              <div
-                {...column.getHeaderProps(column.getSortByToggleProps())}
-                className="th title"
-              >
-                {column.render('Header')}
-                {column.isSorted ? (
-                  column.isSortedDesc ? (
-                    <ChevronDown />
+      <div {...(!isMobile && getTableProps())} className="table">
+        {!isMobile &&
+          headerGroups.map(headerGroup => (
+            <div {...headerGroup.getHeaderGroupProps({})} className="tr">
+              {headerGroup.headers.map(column => (
+                <div
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  className="th title"
+                >
+                  {column.render('Header')}
+                  {column.isSorted ? (
+                    column.isSortedDesc ? (
+                      <ChevronDown />
+                    ) : (
+                      <ChevronUp />
+                    )
                   ) : (
-                    <ChevronUp />
-                  )
-                ) : (
-                  ''
-                )}
-              </div>
-            ))}
-          </div>
-        ))}
+                    ''
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
         <div className="tbody">
-          {rows.map(row => {
+          {page.map(row => {
             prepareRow(row);
             return (
               <div {...row.getRowProps()} className="tr">
                 {row.cells.map(cell => {
                   return (
                     <div {...cell.getCellProps()} className="td">
-                      {cell.render('Cell')}
+                      {isMobile && (
+                        <div className="td-header">{cell.render('Header')}</div>
+                      )}
+                      <div className="td-content">{cell.render('Cell')}</div>
                     </div>
                   );
                 })}
@@ -115,6 +154,47 @@ function TransactionHistoryTable({ data }) {
             );
           })}
         </div>
+      </div>
+      <div className="pagination">
+        <div>
+          <button
+            className="button icon-button"
+            type="button"
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+          >
+            <ChevronsLeft />
+          </button>
+          <button
+            className="button icon-button"
+            type="button"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+          >
+            <ChevronLeft />
+          </button>
+          <button
+            className="button icon-button"
+            type="button"
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+          >
+            <ChevronRight />
+          </button>
+          <button
+            className="button icon-button"
+            type="button"
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            <ChevronsRight />
+          </button>
+        </div>
+        <span>
+          Toplam {pageOptions.length} sayfadan
+          <strong>{pageIndex + 1}.</strong>
+          sayfayı görüntülüyorsunuz.
+        </span>
       </div>
     </div>
   );

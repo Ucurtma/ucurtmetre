@@ -2,11 +2,15 @@
   width: 100%;
   max-width: 800px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
-  padding: 3rem;
+  padding: 2rem 1.75rem;
   background: #fff;
   border-radius: 1.5rem;
   min-height: 200px;
   margin: 3rem auto;
+
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
 
   .breadcrumbLink {
     a {
