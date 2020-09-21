@@ -9,6 +9,11 @@
     }
   }
 
+  .amount {
+    font-feature-settings: 'tnum';
+    font-variant-numeric: tabular-nums;
+  }
+
   .person {
     font-weight: 600;
 

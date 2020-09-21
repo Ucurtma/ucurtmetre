@@ -75,7 +75,11 @@ function TransactionHistoryTable({ data }) {
           row: {
             original: { tokenName },
           },
-        }) => <div>{`${value} ${tokenName}`}</div>,
+        }) => (
+          <div>{`${
+            typeof value === 'number' ? Math.floor(value) : value
+          } ${tokenName}`}</div>
+        ),
       },
     ],
     []
