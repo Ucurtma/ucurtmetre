@@ -2,9 +2,9 @@ import React from 'react';
 import cls from 'classnames';
 import './Thermometer.scss';
 import { Link } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 import { useQuery } from '@apollo/client';
 import { ALL_CAMPAIGN_DETAILS } from '../../Utils/Queries';
-import Loader from '../Loader/Loader';
 import Alert from '../Alert/Alert';
 
 const Thermometer = () => {
@@ -13,7 +13,10 @@ const Thermometer = () => {
   if (loading) {
     return (
       <div className="widget-thermometer">
-        <Loader />
+        <Skeleton width="148px" height="24px" />
+        <Skeleton width="250px" height="45px" style={{ marginTop: 10 }} />
+        <Skeleton width="50px" height="342px" style={{ marginTop: 25 }} />
+        <Skeleton width="250px" height="75px" style={{ marginTop: 25 }} />
       </div>
     );
   }

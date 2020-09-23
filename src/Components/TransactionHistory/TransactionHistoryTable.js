@@ -18,7 +18,7 @@ import useBreakpoints from '../../Utils/useBreakpoints';
 dayjs.extend(relativeTime);
 dayjs.locale(tr);
 
-function TransactionHistoryTable({ data }) {
+function TransactionHistoryTable({ loading, error, data }) {
   const breakpoint = useBreakpoints();
   const isMobile = breakpoint === 'isMobile';
 
@@ -76,7 +76,7 @@ function TransactionHistoryTable({ data }) {
             original: { tokenName },
           },
         }) => (
-          <div>{`${
+          <div className="amount">{`${
             typeof value === 'number' ? Math.floor(value) : value
           } ${tokenName}`}</div>
         ),

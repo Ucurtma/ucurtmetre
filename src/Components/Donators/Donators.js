@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import cls from 'classnames';
 import { useQuery } from '@apollo/client';
 import './Donators.scss';
+import Skeleton from 'react-loading-skeleton';
 import IndividualTab from '../IndividualTab/IndividualTab';
 import SponsorsTab from '../SponsorsTab/SponsorsTab';
 import {
   GET_CORPORATE_SPONSORS,
   GET_INDIVIDUAL_SPONSORS,
 } from '../../Utils/Queries';
-import Loader from '../Loader/Loader';
 import Alert from '../Alert/Alert';
 
 const tabs = ['Kurumsal', 'Bireysel'];
@@ -23,15 +23,17 @@ const Donators = () => {
     data: individualData,
     loading: individualLoading,
     error: individualError,
-  } = useQuery(GET_INDIVIDUAL_SPONSORS, { variables: { top: 5 } });
+  } = useQuery(GET_INDIVIDUAL_SPONSORS, { variables: { top: 6 } });
 
   const [activeTab, setActiveTab] = useState('Kurumsal');
   const toggleDonator = type => setActiveTab(type);
 
   if (corporateLoading || individualLoading) {
     return (
-      <div className="widget-donators with-loader">
-        <Loader />
+      <div className="widget-donators">
+        <Skeleton width="148px" height="50px" />
+        <Skeleton width="100%" height="342px" style={{ marginTop: 25 }} />
+        <Skeleton width="250px" height="75px" style={{ marginTop: 25 }} />
       </div>
     );
   }
