@@ -18,7 +18,7 @@ import useBreakpoints from '../../Utils/useBreakpoints';
 dayjs.extend(relativeTime);
 dayjs.locale(tr);
 
-function TransactionHistoryTable({ loading, error, data }) {
+function TransactionHistoryTable({ data }) {
   const breakpoint = useBreakpoints();
   const isMobile = breakpoint === 'isMobile';
 
