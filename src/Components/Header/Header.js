@@ -14,7 +14,7 @@ const Header = () => {
       <Link to="/">
         <img
           className="logo"
-          src="./assets/images/logo-gray@3x.png"
+          src="/assets/images/logo-gray@3x.png"
           alt="uçurtma"
         />
       </Link>
