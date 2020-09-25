@@ -1,14 +1,14 @@
 footer {
   .illustration {
+    margin-top: 2rem;
     width: 100%;
-    height: 46px;
+    height: 100px;
     display: block;
-    background: url('/assets/images/illustration@3x.png') no-repeat;
+    background: url('/assets/images/illustration.svg') no-repeat;
     background-size: cover;
-    background-position: center;
-
+    background-position: center top;
     @media (min-width: 768px) {
-      height: 104px;
+      margin-top: 0;
     }
   }
 }

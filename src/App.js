@@ -18,17 +18,12 @@ function App() {
         <div>
           <Header />
 
-          <main>
-            <Switch>
-              <Route
-                path="/transaction-history"
-                component={TransactionHistory}
-              />
-              <Route path="/donate-all" component={DonateAll} />
-              <Route path="/" component={Home} />
-              <Route path="*" exact component={NotFound} />
-            </Switch>
-          </main>
+          <Switch>
+            <Route path="/transaction-history" component={TransactionHistory} />
+            <Route path="/donate-all" component={DonateAll} />
+            <Route path="/" component={Home} />
+            <Route path="*" exact component={NotFound} />
+          </Switch>
         </div>
         <Footer />
         <Stairs />
