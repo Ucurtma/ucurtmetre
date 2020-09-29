@@ -13,6 +13,7 @@ import {
 import './BankTransferFlow.scss';
 import Alert from '../Alert/Alert';
 import SelectBank from '../SelectBank/SelectBank';
+import Input from '../Input/Input';
 
 const bankTransferValidation = Yup.object().shape({
   email: Yup.string().required('Required').email('Email'),
@@ -138,14 +139,14 @@ function BankTransferFlow() {
               {({ isSubmitting, dirty, isValid }) => (
                 <Form data-private>
                   <div>
-                    <input
+                    <Input
                       label="Email"
                       name="email"
                       type="email"
                       placeholder="Lütfen email adresinizi girin."
                     />
 
-                    <input
+                    <Input
                       label="Amount"
                       name="amount"
                       type="number"
