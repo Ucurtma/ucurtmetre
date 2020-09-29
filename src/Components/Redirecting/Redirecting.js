@@ -11,7 +11,9 @@ const Redirecting = () => {
   React.useEffect(() => {
     const urlData = parse(location.search);
     if (urlData.code) {
-      fetch(`${backendUrl}/oauth/callback?code=${urlData.code}`)
+      fetch(
+        `${backendUrl}/oauth/callback?code=${urlData.code}&returnUrl=https%3A%2F%2Fdestek.ucurtmaprojesi.com%2Fauth%2Fcallback`
+      )
         .then(response => {
           if (response.status === 200) {
             return response.json();
@@ -45,7 +47,7 @@ const Redirecting = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div className="redirecting-container">Redirecting...</div>;
+  return <div className="redirecting-container">İşleminiz yapılıyor...</div>;
 };
 
 export default Redirecting;

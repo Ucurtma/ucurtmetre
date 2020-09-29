@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
 import './DonateAll.scss';
+import { useLocation } from 'react-router';
 import BankTransferFlow from '../BankTransferFlow/BankTransferFlow';
 import BiLiraWalletFlow from '../BiLiraWalletFlow/BiLiraWalletFlow';
 import EthereumWallet from '../EthereumWallet/EthereumWallet';
 import Card from '../Card/Card';
-import { useLocation } from 'react-router';
 
 function DonateAll() {
   const location = useLocation();
