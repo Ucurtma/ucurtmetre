@@ -1,17 +1,38 @@
 import React from 'react';
+import * as Yup from 'yup';
 import { AlertCircle } from 'react-feather';
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery, useMutation } from '@apollo/client';
 import { useLocation } from 'react-router';
+import { Form, Formik } from 'formik';
 import Skeleton from 'react-loading-skeleton';
-import { GET_OAUTH_URL, GET_BANKS } from '../../Utils/Queries';
+import {
+  GET_OAUTH_URL,
+  GET_BANKS,
+  COLLECT_DONATION,
+} from '../../Utils/Queries';
 import './BankTransferFlow.scss';
 import Alert from '../Alert/Alert';
 import SelectBank from '../SelectBank/SelectBank';
+
+const bankTransferValidation = Yup.object().shape({
+  email: Yup.string().required('Required').email('Email'),
+  amount: Yup.number()
+    .min(100, 'Min 100')
+    .max(1500, 'Max 1500')
+    .typeError('Not Number')
+    .required('Required'),
+  consentToReceiveNews: Yup.boolean().oneOf([true], 'Consent'),
+  consentToUserAgreement: Yup.boolean().oneOf([true], 'Consent'),
+});
 
 function BankTransferFlow() {
   const location = useLocation();
   const [currentBank, setCurrentBank] = React.useState(-1);
   const blAuth = localStorage.getItem('blAuth');
+
+  const [collectDonation, { loading: donationLoading }] = useMutation(
+    COLLECT_DONATION
+  ); // data: donationData, error: donationError,
 
   const [getOauthUrl, { data }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
@@ -82,11 +103,81 @@ function BankTransferFlow() {
       )}
       {bankError && <div>Error</div>}
       {bankData && (
-        <SelectBank
-          bankData={bankData}
-          onSelect={bankId => setCurrentBank(bankId)}
-          selectedBank={currentBank}
-        />
+        <>
+          <SelectBank
+            bankData={bankData}
+            onSelect={bankId => setCurrentBank(bankId)}
+            selectedBank={currentBank}
+          />
+          {currentBank !== -1 && (
+            <Formik
+              initialValues={{
+                email: '',
+                amount: '',
+                consentToReceiveNews: false,
+                consentToUserAgreement: false,
+              }}
+              validationSchema={bankTransferValidation}
+              onSubmit={async (values, { setSubmitting }) => {
+                setSubmitting(true);
+                collectDonation({
+                  variables: {
+                    campaignCode: 'campaign-all',
+                    bankId: parseInt(currentBank, 10),
+                    email: values.email,
+                    amount: parseFloat(values.amount),
+                  },
+                  context: {
+                    headers: {
+                      oauth2: blAuth,
+                    },
+                  },
+                });
+              }}
+            >
+              {({ isSubmitting, dirty, isValid }) => (
+                <Form data-private>
+                  <div>
+                    <input
+                      label="Email"
+                      name="email"
+                      type="email"
+                      placeholder="Lütfen email adresinizi girin."
+                    />
+
+                    <input
+                      label="Amount"
+                      name="amount"
+                      type="number"
+                      placeholder="Lütfen göndermek istediğiniz destek miktarını giriniz."
+                    />
+                  </div>
+                  {/* <Agreements
+                    kvkkName="consentToReceiveNews"
+                    agreementName="consentToUserAgreement"
+                  /> */}
+                  <div
+                    d="flex"
+                    alignItems="center"
+                    mt={4}
+                    flexDirection={{ base: 'column', md: 'row' }}
+                  >
+                    <button
+                      variant="outline"
+                      color="linkBlue.400"
+                      type="submit"
+                      isLoading={isSubmitting || donationLoading}
+                      disabled={isSubmitting || !dirty || !isValid}
+                      width="full"
+                    >
+                      Destekle
+                    </button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          )}
+        </>
       )}
       {data && !blAuth && (
         <a
