@@ -17,7 +17,7 @@ function DonateAll() {
   ];
 
   const [activeTab, setActiveTab] = useState(
-    donateWays[location.state.state?.redirected ? 2 : 0]
+    donateWays[location.state?.state?.redirected ? 2 : 0]
   );
 
   const toggleDonator = type => {

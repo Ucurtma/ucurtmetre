@@ -1,24 +1,48 @@
 import React from 'react';
 import { AlertCircle } from 'react-feather';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { useLocation } from 'react-router';
-import { GET_OAUTH_URL } from '../../Utils/Queries';
+import Skeleton from 'react-loading-skeleton';
+import { GET_OAUTH_URL, GET_BANKS } from '../../Utils/Queries';
 import './BankTransferFlow.scss';
 import Alert from '../Alert/Alert';
+import SelectBank from '../SelectBank/SelectBank';
 
 function BankTransferFlow() {
   const location = useLocation();
+  const [currentBank, setCurrentBank] = React.useState(-1);
+  const blAuth = localStorage.getItem('blAuth');
 
-  const { data } = useQuery(GET_OAUTH_URL, {
+  const [getOauthUrl, { data }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
       campaignId: 'donate-all',
       returnUrl: 'https://destek.ucurtmaprojesi.com/auth/callback',
     },
   });
 
+  const [
+    getBanks,
+    { error: bankError, data: bankData, loading: bankLoading },
+  ] = useLazyQuery(GET_BANKS, {
+    context: {
+      headers: {
+        oauth2: blAuth,
+      },
+    },
+  });
+
+  React.useLayoutEffect(() => {
+    if (blAuth) {
+      getBanks();
+    } else {
+      getOauthUrl();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="bank-transfer-flow">
-      {location.state.state?.redirectError && (
+      {location.state?.state?.redirectError && (
         <Alert
           icon={<AlertCircle />}
           variant="danger"
@@ -40,16 +64,31 @@ function BankTransferFlow() {
               </a>{' '}
               ile çalışıyoruz.
             </p>
-            <p>
-              Aşağıdaki butonu kullanarak hızlıca hesap oluşturabilir, varolan
-              hesabınızla transferi yapacağınız banka hesabına kolayca
-              ulaşabilirsiniz.
-            </p>
+            {!blAuth && (
+              <p>
+                Aşağıdaki butonu kullanarak hızlıca hesap oluşturabilir, varolan
+                hesabınızla transferi yapacağınız banka hesabına kolayca
+                ulaşabilirsiniz.
+              </p>
+            )}
           </>
         }
         icon={<AlertCircle />}
       />
-      {data && (
+      {bankLoading && (
+        <div>
+          <Skeleton count={4} />
+        </div>
+      )}
+      {bankError && <div>Error</div>}
+      {bankData && (
+        <SelectBank
+          bankData={bankData}
+          onSelect={bankId => setCurrentBank(bankId)}
+          selectedBank={currentBank}
+        />
+      )}
+      {data && !blAuth && (
         <a
           className="login-with-bilira"
           href={data.biliraOAuthUrl.authorizationUri}

@@ -1,0 +1,32 @@
+.select-bank {
+  .select-bank-header {
+    margin-bottom: 1rem;
+
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .banks {
+    display: grid;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+    button {
+      border: 1px solid #ccc;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+
+      &.isSelected {
+        background: #c6f6d5;
+        border: 1px solid #9ae6b4;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

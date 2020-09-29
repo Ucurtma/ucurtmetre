@@ -61,3 +61,13 @@ export const GET_LATEST_DONATIONS = gql`
     }
   }
 `;
+
+export const GET_BANKS = gql`
+  {
+    systemBankAccounts {
+      id
+      name
+      iban
+    }
+  }
+`;
