@@ -12,7 +12,20 @@ const Redirecting = () => {
     const urlData = parse(location.search);
     if (urlData.code) {
       fetch(`${backendUrl}/oauth/callback?code=${urlData.code}`)
-        .then(response => response.json())
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          }
+
+          history.push(`/donate-all`, {
+            state: {
+              redirected: true,
+              redirectError: true,
+            },
+          });
+
+          return Promise.reject();
+        })
         .then(data => {
           localStorage.setItem('blAuth', data.token);
           history.push(`/donate-all`, {

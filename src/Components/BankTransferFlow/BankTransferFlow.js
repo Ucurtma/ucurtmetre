@@ -1,11 +1,14 @@
 import React from 'react';
 import { AlertCircle } from 'react-feather';
 import { useQuery } from '@apollo/client';
+import { useLocation } from 'react-router';
 import { GET_OAUTH_URL } from '../../Utils/Queries';
 import './BankTransferFlow.scss';
 import Alert from '../Alert/Alert';
 
 function BankTransferFlow() {
+  const location = useLocation();
+
   const { data } = useQuery(GET_OAUTH_URL, {
     variables: {
       campaignId: 'donate-all',
@@ -15,6 +18,13 @@ function BankTransferFlow() {
 
   return (
     <div className="bank-transfer-flow">
+      {location.state.state?.redirectError && (
+        <Alert
+          icon={<AlertCircle />}
+          variant="danger"
+          message="BiLira ile bağlantı kurulurken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+        />
+      )}
       <Alert
         message={
           <>

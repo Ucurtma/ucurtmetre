@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container with-alert">
         <div className="box">
           <strong>{monthSummary.firstDate.format('DD MMMM')}</strong> ile{' '}
           <strong>{monthSummary.lastDate.format('DD MMMM')}</strong> tarihleri

@@ -5,15 +5,20 @@ import BankTransferFlow from '../BankTransferFlow/BankTransferFlow';
 import BiLiraWalletFlow from '../BiLiraWalletFlow/BiLiraWalletFlow';
 import EthereumWallet from '../EthereumWallet/EthereumWallet';
 import Card from '../Card/Card';
+import { useLocation } from 'react-router';
 
 function DonateAll() {
+  const location = useLocation();
+
   const donateWays = [
     { name: 'BiLira Cüzdanı', component: <BiLiraWalletFlow /> },
     { name: 'Ethereum Cüzdanı', component: <EthereumWallet /> },
     { name: 'Banka Havalesi', component: <BankTransferFlow /> },
   ];
 
-  const [activeTab, setActiveTab] = useState(donateWays[0]);
+  const [activeTab, setActiveTab] = useState(
+    donateWays[location.state.state?.redirected ? 2 : 0]
+  );
 
   const toggleDonator = type => {
     setActiveTab(type);
