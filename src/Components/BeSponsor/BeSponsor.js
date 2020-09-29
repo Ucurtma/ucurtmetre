@@ -1,9 +1,7 @@
 import React from 'react';
 import './BeSponsor.scss';
 
-function BeSponsor({
-  href = `https://twitter.com/intent/tweet?text=This is not a nice placeholder for link bro&screen_name=mustaphaturhan`,
-}) {
+function BeSponsor({ href = `https://bit.ly/2G2CT7f` }) {
   return (
     <a
       className="empty-sponsor"
