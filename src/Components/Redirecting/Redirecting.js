@@ -11,7 +11,7 @@ const Redirecting = () => {
   React.useEffect(() => {
     const urlData = parse(location.search);
     if (urlData.code) {
-      fetch(`${backendUrl}/oauth/callback?code=${urlData.code}`)
+      fetch(`${backendUrl}/oauth/callback?code=${urlData.code}&returnUrl=https%3A%2F%2Fdestek.ucurtmaprojesi.com%2Fauth%2Fcallback`)
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('blAuth', data.token);
