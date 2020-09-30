@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import { AlertCircle } from 'react-feather';
 import { useLazyQuery, useMutation } from '@apollo/client';
@@ -14,16 +14,26 @@ import './BankTransferFlow.scss';
 import Alert from '../Alert/Alert';
 import SelectBank from '../SelectBank/SelectBank';
 import Input from '../Input/Input';
+import Agreements from '../Agreements/Agreements';
+import BankDetailViewer from '../BankDetailViewer/BankDetailViewer';
 
 const bankTransferValidation = Yup.object().shape({
-  email: Yup.string().required('Required').email('Email'),
+  email: Yup.string()
+    .required('Bu alan zorunludur.')
+    .email('Lütfen geçerli bir email adresi giriniz.'),
   amount: Yup.number()
-    .min(100, 'Min 100')
-    .max(1500, 'Max 1500')
-    .typeError('Not Number')
-    .required('Required'),
-  consentToReceiveNews: Yup.boolean().oneOf([true], 'Consent'),
-  consentToUserAgreement: Yup.boolean().oneOf([true], 'Consent'),
+    .min(100, "Gönderebileceğiniz en düşük miktar 100 TRB'dir.")
+    .max(1500, "Gönderebileceğiniz en yüksek miktar 1500 TRB'dir.")
+    .typeError('Lütfen geçerli bir rakam giriniz.')
+    .required('Bu alan zorunludur.'),
+  consentToReceiveNews: Yup.boolean().oneOf(
+    [true],
+    'Devam edebilmek için sözleşmeyi onaylamanız gerekmektedir.'
+  ),
+  consentToUserAgreement: Yup.boolean().oneOf(
+    [true],
+    'Devam edebilmek için sözleşmeyi onaylamanız gerekmektedir.'
+  ),
 });
 
 function BankTransferFlow() {
@@ -31,9 +41,10 @@ function BankTransferFlow() {
   const [currentBank, setCurrentBank] = React.useState(-1);
   const blAuth = localStorage.getItem('blAuth');
 
-  const [collectDonation, { loading: donationLoading }] = useMutation(
-    COLLECT_DONATION
-  ); // data: donationData, error: donationError,
+  const [
+    collectDonation,
+    { data: donationData, error: donationError, loading: donationLoading },
+  ] = useMutation(COLLECT_DONATION, { onError: err => err });
 
   const [getOauthUrl, { data }] = useLazyQuery(GET_OAUTH_URL, {
     variables: {
@@ -53,7 +64,7 @@ function BankTransferFlow() {
     },
   });
 
-  React.useLayoutEffect(() => {
+  useEffect(() => {
     if (blAuth) {
       getBanks();
     } else {
@@ -61,6 +72,14 @@ function BankTransferFlow() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (bankError) {
+      localStorage.removeItem('blAuth');
+      getOauthUrl();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bankError]);
 
   return (
     <div className="bank-transfer-flow">
@@ -102,8 +121,15 @@ function BankTransferFlow() {
           <Skeleton count={4} />
         </div>
       )}
-      {bankError && <div>Error</div>}
-      {bankData && (
+      {data && !blAuth && (
+        <a
+          className="login-with-bilira"
+          href={data.biliraOAuthUrl.authorizationUri}
+        >
+          BiLira ile giriş yap
+        </a>
+      )}
+      {bankData && !donationData && (
         <>
           <SelectBank
             bankData={bankData}
@@ -147,46 +173,36 @@ function BankTransferFlow() {
                     />
 
                     <Input
-                      label="Amount"
+                      label="Miktar"
                       name="amount"
                       type="number"
                       placeholder="Lütfen göndermek istediğiniz destek miktarını giriniz."
                     />
                   </div>
-                  {/* <Agreements
+
+                  <Agreements
                     kvkkName="consentToReceiveNews"
                     agreementName="consentToUserAgreement"
-                  /> */}
-                  <div
-                    d="flex"
-                    alignItems="center"
-                    mt={4}
-                    flexDirection={{ base: 'column', md: 'row' }}
+                  />
+
+                  <button
+                    className="button secondary-button submit"
+                    type="submit"
+                    disabled={
+                      isSubmitting || !dirty || !isValid || donationLoading
+                    }
+                    width="full"
                   >
-                    <button
-                      variant="outline"
-                      color="linkBlue.400"
-                      type="submit"
-                      isLoading={isSubmitting || donationLoading}
-                      disabled={isSubmitting || !dirty || !isValid}
-                      width="full"
-                    >
-                      Destekle
-                    </button>
-                  </div>
+                    Destekle
+                  </button>
                 </Form>
               )}
             </Formik>
           )}
         </>
       )}
-      {data && !blAuth && (
-        <a
-          className="login-with-bilira"
-          href={data.biliraOAuthUrl.authorizationUri}
-        >
-          BiLira ile giriş yap
-        </a>
+      {(donationData || donationError) && (
+        <BankDetailViewer error={donationError} data={donationData} />
       )}
     </div>
   );

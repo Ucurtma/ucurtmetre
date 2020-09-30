@@ -9,4 +9,29 @@
     margin-top: 1rem;
     border-radius: 4px;
   }
+
+  .submit {
+    border: 1px solid;
+    border-color: #4299e1;
+    color: #4299e1;
+    cursor: pointer;
+    width: 100%;
+    justify-content: center;
+
+    &:hover {
+      background: #edf2f7;
+    }
+
+    &:disabled {
+      background: transparent;
+      border-color: #cbd5e0;
+      color: #cbd5e0;
+      cursor: not-allowed;
+    }
+
+    &:focus {
+      box-shadow: #3182ce 0px 0px 0px 1px;
+      background: #edf2f7;
+    }
+  }
 }

@@ -1,0 +1,11 @@
+.checkbox-control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  label {
+    margin: 0;
+    margin-left: 0.5rem;
+    font-weight: 500;
+  }
+}

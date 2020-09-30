@@ -10,7 +10,9 @@ function Input({ name, placeholder, label }) {
         <div className="form-control">
           <label htmlFor={name}>{label}</label>
           <input
-            className={cls({ 'input-error': meta.touched && meta.error })}
+            className={cls('input', {
+              'input-error': meta.touched && meta.error,
+            })}
             type="text"
             placeholder={placeholder}
             id={name}
