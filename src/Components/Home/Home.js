@@ -10,8 +10,8 @@ const Home = () => {
       firstDate: dayjs('2020-08-28'),
       lastDate: dayjs(),
       amounts: {
-        total: 28000,
-        to: 24000,
+        total: 49386,
+        to: 45000,
       },
     }),
     []
