@@ -6,4 +6,7 @@
   width: 100%;
   max-width: 545px;
   margin: 0 auto;
+  @media (min-width: 768px) {
+    margin-bottom: 1rem;
+  }
 }

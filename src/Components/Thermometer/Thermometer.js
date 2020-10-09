@@ -79,7 +79,7 @@ const Thermometer = () => {
               {new Intl.NumberFormat('tr-TR').format(currentValue)}
               <span className="currency">TRYB</span>
             </div>
-            <div className="subtext">Şimdiye Kadar Toplanan</div>
+            <div className="subtext">Şimdiye Kadar Toplanan Miktar</div>
           </div>
         </div>
       </div>

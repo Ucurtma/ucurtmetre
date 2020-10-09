@@ -19,6 +19,10 @@ const Home = () => {
 
   return (
     <>
+      <main className="container">
+        <Thermometer />
+        <Donators />
+      </main>
       <div className="container with-alert">
         <div className="box">
           <strong>{monthSummary.firstDate.format('DD MMMM')}</strong> ile{' '}
@@ -28,10 +32,6 @@ const Home = () => {
           öğrencilere dağıtılmıştır.
         </div>
       </div>
-      <main className="container">
-        <Thermometer />
-        <Donators />
-      </main>
     </>
   );
 };
