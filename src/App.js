@@ -11,6 +11,7 @@ import Stairs from './Components/Stairs/Stairs';
 import client from './Utils/ApolloClient';
 import TransactionHistory from './Components/TransactionHistory/TransactionHistory';
 import Redirecting from './Components/Redirecting/Redirecting';
+import CookiePolicy from './Components/Agreements/CookiePolicy';
 
 const ClarificationText = lazy(() =>
   import('./Components/Agreements/ClarificationText')
@@ -40,6 +41,7 @@ function App() {
               <Route path="/kvkk" component={ClarificationText} />
               <Route path="/direct-consent" component={DirectConsent} />
               <Route path="/user-agreement" component={UserAgreement} />
+              <Route path="/cookie-policy" component={CookiePolicy} />
               <Route path="/" component={Home} />
               <Route path="*" exact component={NotFound} />
             </Switch>

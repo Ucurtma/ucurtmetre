@@ -1,14 +1,39 @@
 footer {
   .illustration {
-    margin-top: 2rem;
     width: 100%;
-    height: 100px;
+    height: 120px;
     display: block;
     background: url('/assets/images/illustration.svg') no-repeat;
     background-size: cover;
     background-position: center top;
     @media (min-width: 768px) {
       margin-top: 0;
+    }
+  }
+
+  .footer-nav {
+    display: flex;
+    background: #1a202c;
+    width: '100%';
+
+    ul {
+      padding: 0;
+      margin: 0.25rem 0;
+      li {
+        font-size: 0.825rem;
+        display: inline-flex;
+        padding: 0;
+        margin-left: 1rem;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+
+        a {
+          font-weight: 400;
+          color: #edf2f7;
+        }
+      }
     }
   }
 }
