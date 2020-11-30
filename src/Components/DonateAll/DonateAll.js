@@ -5,6 +5,7 @@ import { useLocation } from 'react-router';
 import BankTransferFlow from '../BankTransferFlow/BankTransferFlow';
 import BiLiraWalletFlow from '../BiLiraWalletFlow/BiLiraWalletFlow';
 import EthereumWallet from '../EthereumWallet/EthereumWallet';
+import Bitcoin from '../Bitcoin/Bitcoin';
 import Card from '../Card/Card';
 
 function DonateAll() {
@@ -13,6 +14,7 @@ function DonateAll() {
   const donateWays = [
     { name: 'BiLira Cüzdanı', component: <BiLiraWalletFlow /> },
     { name: 'Ethereum Cüzdanı', component: <EthereumWallet /> },
+    { name: 'Bitcoin', component: <Bitcoin /> },
     { name: 'Banka Havalesi', component: <BankTransferFlow /> },
   ];
 
