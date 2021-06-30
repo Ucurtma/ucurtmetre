@@ -13,7 +13,7 @@ function BiLiraWalletFlow() {
       kaybedersiniz."
         icon={<AlertCircle />}
       />
-      <AddressViewer data="0x3365CfF5e0970fbB2cF744796901002d9987c0Dc" />
+      <AddressViewer data="0x955E5F56fae77Db5829FAE980ADeAc688fE80259" />
     </>
   );
 }
